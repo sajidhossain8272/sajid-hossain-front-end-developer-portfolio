@@ -34,7 +34,7 @@ The website is built with the **Next.js App Router**, showcasing professional pr
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/sajid-hossain/portfolio.git
+   git clone https://github.com/sajidhossain8272/sajid-hossain-front-end-developer-portfolio.git
    cd portfolio
    ```
 
@@ -84,10 +84,10 @@ The website is built with the **Next.js App Router**, showcasing professional pr
 For work inquiries, collaboration, or general questions, feel free to reach out:
 
 - **Name:** Sajid Hossain  
-- **Email:** sajidhossain.web@gmail.com  
-- **LinkedIn:** [https://www.linkedin.com/in/sajid-hossain-dev](https://www.linkedin.com/in/sajid-hossain-dev)  
-- **Portfolio Website:** [https://sajid-portfolio.vercel.app](https://sajid-portfolio.vercel.app)  
-- **GitHub:** [https://github.com/sajid-hossain](https://github.com/sajid-hossain)
+- **Email:** sajidhossain8272@gmail.com
+- **LinkedIn:** [https://www.linkedin.com/in/brokephilanthropist](https://www.linkedin.com/in/brokephilanthropist/)  
+- **Portfolio Website:** [https://sajid-hossain-front-end-developer-p.vercel.app/](https://sajid-hossain-front-end-developer-p.vercel.app/)  
+- **GitHub:** [https://github.com/sajidhossain8272](https://github.com/sajidhossain8272)
 
 ## License
 
