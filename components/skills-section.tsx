@@ -168,40 +168,59 @@ export default function SkillsSection() {
           viewport={{ once: true }}
           className="mt-20"
         >
-          <motion.div 
-            className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-12 shadow-2xl"
-            whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.08)" }}
-            transition={{ duration: 0.3 }}
-          >
-            <motion.h3 
-              className="text-3xl font-bold text-white text-center mb-8"
-              whileInView={{ scale: [0.9, 1] }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              Soft Skills & Expertise
-            </motion.h3>
-            <div className="flex flex-wrap justify-center gap-4">
-              {[
-                'Attention to Detail', 'Problem Solving', 'User-Centered Design', 
-                'Agile Collaboration', 'Time Management', 'Fast Learning', 
-                'Remote Communication', 'Cross-Cultural Adaptability', 'Leadership',
-                'Project Management', 'Client Relations', 'Technical Writing'
-              ].map((skill, index) => (
-                <motion.span
-                  key={skill}
-                  className="px-6 py-3 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm border border-white/20 rounded-2xl text-white/90 font-medium"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                >
-                  {skill}
-                </motion.span>
-              ))}
-            </div>
-          </motion.div>
+        <motion.div 
+  className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-12 shadow-2xl hover:shadow-[0_0_60px_rgba(255,255,255,0.1)] transition-shadow duration-300 group"
+  whileHover={{ backgroundColor: "rgba(255, 255, 255, 0.08)" }}
+  transition={{ duration: 0.3 }}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  variants={{
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.05,
+        delayChildren: 0.2,
+      },
+    },
+  }}
+>
+  <motion.h3 
+    className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-blue-400 to-cyan-400 text-center mb-10 drop-shadow-sm"
+    whileInView={{ scale: [0.9, 1] }}
+    transition={{ duration: 0.5 }}
+    viewport={{ once: true }}
+  >
+    Soft Skills & Expertise
+  </motion.h3>
+
+  <div className="flex flex-wrap justify-center gap-4">
+    {[
+      'Attention to Detail', 'Problem Solving', 'User-Centered Design', 
+      'Agile Collaboration', 'Time Management', 'Fast Learning', 
+      'Remote Communication', 'Cross-Cultural Adaptability', 'Leadership',
+      'Project Management', 'Client Relations', 'Technical Writing'
+    ].map((skill, index) => (
+      <motion.span
+        key={skill}
+        className="px-6 py-3 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm border border-white/20 rounded-2xl text-white/90 font-medium text-sm sm:text-base transition-transform duration-300 cursor-default group-hover:shadow-md hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: index * 0.05 }}
+        whileHover={{ scale: 1.08, y: -3 }}
+      >
+        {skill}
+      </motion.span>
+    ))}
+  </div>
+
+  {/* Optional subtle animated glow effect */}
+  <motion.div
+    className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-cyan-500/10 via-white/5 to-pink-500/10 blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 pointer-events-none"
+    aria-hidden="true"
+  />
+</motion.div>
+
         </motion.div>
       </div>
     </section>

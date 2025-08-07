@@ -69,8 +69,8 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
-        <ExperienceSection />
         <ProjectsSection />
+        <ExperienceSection />
         <ConsultationSection />
         <ContactSection />
         <FloatingChat />

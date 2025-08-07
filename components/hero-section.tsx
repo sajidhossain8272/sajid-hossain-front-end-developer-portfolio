@@ -108,7 +108,7 @@ export default function HeroSection() {
       </div>
 
       {/* Main Card (Futuristic Panel) */}
-  <div className="relative z-10 text-center w-full max-w-3xl mx-auto">
+  <div className="relative z-10 text-center w-full max-w-3xl mx-auto md:max-w-6xl">
     <motion.div
       ref={cardRef}
       className="
