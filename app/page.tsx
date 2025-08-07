@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import HeroSection from "@/components/hero-section";
 import AboutSection from "@/components/about-section";
-import SkillsSection from "@/components/skills-section";
+import SkillsSection, { SoftSkillsSection } from "@/components/skills-section";
 import ExperienceSection from "@/components/experience-section";
 import ProjectsSection from "@/components/projects-section";
 import ConsultationSection from "@/components/consultation-section";
@@ -70,6 +70,7 @@ export default function Home() {
         <AboutSection />
         <ProjectsSection />
         <SkillsSection />
+        <SoftSkillsSection />
         <ExperienceSection />
         <ConsultationSection />
         <ContactSection />
