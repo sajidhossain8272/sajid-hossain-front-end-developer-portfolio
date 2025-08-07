@@ -1,6 +1,6 @@
 # Sajid Hossain – Front-End Developer Portfolio
 
-This is the personal portfolio website of **Sajid Hossain**, a Front-End Developer specializing in building modern, performant, and scalable web applications using technologies like React, Next.js, TypeScript, and Tailwind CSS.
+This is the personal portfolio website of **Sajid Hossain**, a Software Developer specializing in building modern, performant, and scalable web applications using technologies like React, Next.js, TypeScript, and Tailwind CSS.
 
 The website is built with the **Next.js App Router**, showcasing professional projects, skills, experience, and a free consultation booking interface.
 
@@ -75,7 +75,7 @@ The website is built with the **Next.js App Router**, showcasing professional pr
 
 ## SEO and Open Graph
 
-- **Title:** Sajid Hossain – Front-End Developer Portfolio
+- **Title:** Sajid Hossain – Software Developer Portfolio
 - **OG Image:** `/public/og-image.png`
 - **Metadata:** Configured using Next.js App Router `metadata` object in `page.tsx`
 

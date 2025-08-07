@@ -125,7 +125,7 @@ export default function AboutSection() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
               >
-                Front-End Developer with <strong className="text-white">2+ years of experience</strong> delivering responsive, 
+                Software Developer with <strong className="text-white">2+ years of experience</strong> delivering responsive, 
                 high-performance web applications using <strong className="text-blue-300">React.js</strong>, 
                 <strong className="text-purple-300"> Next.js</strong>, <strong className="text-cyan-300">TypeScript</strong>, 
                 and <strong className="text-emerald-300">Tailwind CSS</strong>.
