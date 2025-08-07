@@ -21,7 +21,7 @@ const projects = [
     tag: 'Image Conversion Tool',
     description: 'A secure, privacy-first in-browser image conversion utility built with modern React architecture, focusing on performance, accessibility, and user experience with zero server dependency.',
     stack: ['React.js', 'TypeScript', 'Tailwind CSS', 'Next.js', 'Web APIs'],
-    liveUrl: 'https://quick-convert-img.app',
+    liveUrl: 'https://quick-convert-img.vercel.app/',
     image: 'https://quick-convert-img.vercel.app/og-image.png',
     icon: Zap,
     gradient: 'from-emerald-500 to-teal-500',
