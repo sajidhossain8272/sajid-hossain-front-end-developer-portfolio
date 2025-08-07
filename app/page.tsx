@@ -68,8 +68,8 @@ export default function Home() {
         <ResumeDownload />
         <HeroSection />
         <AboutSection />
-        <SkillsSection />
         <ProjectsSection />
+        <SkillsSection />
         <ExperienceSection />
         <ConsultationSection />
         <ContactSection />
