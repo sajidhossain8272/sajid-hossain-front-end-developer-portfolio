@@ -10,16 +10,36 @@ import { useRef, useState, MouseEvent, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Download, Calendar, Sparkles, ArrowDown } from "lucide-react";
 import CalendlyModal from "./calendly-modal";
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiMongodb,
+  SiJavascript,
+  SiFirebase,
+} from "react-icons/si";
 
 const techStack = [
-  { name: "React", logo: "⚛️" },
-  { name: "Next.js", logo: "▲" },
-  { name: "TypeScript", logo: "TS" },
-  { name: "Tailwind CSS", logo: "🎨" },
-  { name: "Node.js", logo: "🟢" },
-  { name: "MongoDB", logo: "🍃" },
-  { name: "JavaScript", logo: "JS" },
-  { name: "Firebase", logo: "🔥" },
+  { name: "React", icon: SiReact },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "TypeScript", icon: SiTypescript },
+  { name: "Tailwind CSS", icon: SiTailwindcss },
+  { name: "Node.js", icon: SiNodedotjs },
+  { name: "MongoDB", icon: SiMongodb },
+  { name: "JavaScript", icon: SiJavascript },
+  { name: "Firebase", icon: SiFirebase },
+];
+const brandColors = [
+  "#61dafb", // React
+  "#ffffff", // Next.js (You can use white/black or gray for Next.js)
+  "#3178c6", // TypeScript
+  "#38bdf8", // Tailwind CSS
+  "#3c873a", // Node.js
+  "#13aa52", // MongoDB
+  "#f7df1e", // JavaScript
+  "#ff2e00", // Firebase
 ];
 
 export default function HeroSection() {
@@ -60,11 +80,11 @@ export default function HeroSection() {
     "0 0 18px 2px #3c873a, 0 0 34px 10px #8cc84b", // Node: green
     "0 0 18px 2px #13aa52, 0 0 34px 10px #00ed64", // MongoDB: green
     "0 0 18px 2px #f7df1e, 0 0 34px 10px #ffd600", // JS: yellow
-    "0 0 18px 2px #ffca28, 0 0 34px 10px #ff9800", // Firebase: orange
+    "0 0 18px 2px #ffca28, 0 0 34px 10px #ff2e00", // Firebase: orange
   ];
 
   return (
-<section className='relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-16 pb-16 sm:pt-24 sm:pb-16'>
+    <section className='relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-16 pb-16 sm:pt-24 sm:pb-16'>
       {/* Animated Background Orbs */}
       <div className='absolute inset-0 pointer-events-none select-none z-0'>
         <motion.div
@@ -108,10 +128,10 @@ export default function HeroSection() {
       </div>
 
       {/* Main Card (Futuristic Panel) */}
-  <div className="relative z-10 text-center w-full max-w-3xl mx-auto md:max-w-6xl">
-    <motion.div
-      ref={cardRef}
-      className="
+      <div className='relative z-10 text-center w-full max-w-3xl mx-auto md:max-w-6xl'>
+        <motion.div
+          ref={cardRef}
+          className='
         group relative mx-auto
         bg-[#13131a]/95
         border-2 border-[#2323f6]/30
@@ -123,7 +143,7 @@ export default function HeroSection() {
         text-white
         overflow-visible
         transition-all duration-300
-      "
+      '
           style={{}}
           initial={{ opacity: 0, y: 30, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -284,44 +304,46 @@ export default function HeroSection() {
             </div>
           </motion.div>
         </motion.div>
-            <motion.div
-      className="mt-8 flex flex-wrap justify-center gap-4 md:gap-6"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 1.3 }}
-      aria-label="Tech Stack"
-    >
-      {techStack.map((tech, index) => (
         <motion.div
-          key={tech.name}
-          className="group relative"
-          initial={{ opacity: 0, scale: 0.85, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1.4 + index * 0.09 }}
-          whileHover={{
-            scale: 1.09,
-            y: -8,
-            transition: { duration: 0.22 }
-          }}
-          tabIndex={0}
+          className='mt-8 flex flex-wrap justify-center gap-4 md:gap-6'
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.3 }}
+          aria-label='Tech Stack'
         >
-          <span className="flex items-center gap-2 px-6 py-2.5 bg-white/10 border border-white/20 rounded-2xl text-white/90 font-medium shadow hover:shadow-xl text-base sm:text-lg transition">
-            <span className="text-2xl">{tech.logo}</span>
-            <span>{tech.name}</span>
-          </span>
-          {/* Neon Glow on Hover */}
-          <motion.span
-            className="absolute inset-0 rounded-2xl pointer-events-none transition"
-            style={{
-              boxShadow: techGlows[index],
-              opacity: glowIndex === index ? 0.7 : 0,
-            }}
-            aria-hidden="true"
-          />
+          {techStack.map((tech, index) => {
+            const Icon = tech.icon;
+            return (
+              <motion.div
+                key={tech.name}
+                className='group relative'
+                initial={{ opacity: 0, scale: 0.85, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.4 + index * 0.09 }}
+                whileHover={{
+                  scale: 1.09,
+                  y: -8,
+                  transition: { duration: 0.22 },
+                }}
+                tabIndex={0}
+              >
+                <span className='flex items-center gap-2 px-6 py-2.5 bg-white/10 border border-white/20 rounded-2xl text-white/90 font-medium shadow hover:shadow-xl text-base sm:text-lg transition'>
+                  <Icon className='w-7 h-7' color={brandColors[index]} />
+                  <span>{tech.name}</span>
+                </span>
+                {/* Neon Glow on Hover */}
+                <motion.span
+                  className='absolute inset-0 rounded-2xl pointer-events-none transition'
+                  style={{
+                    boxShadow: techGlows[index],
+                    opacity: glowIndex === index ? 0.7 : 0,
+                  }}
+                  aria-hidden='true'
+                />
+              </motion.div>
+            );
+          })}
         </motion.div>
-      ))}
-    </motion.div>
-
       </div>
 
       <AnimatePresence>
