@@ -10,13 +10,13 @@ const consultationFeatures = [
   {
     icon: Clock,
     title: 'Quick Response',
-    description: 'Usually respond within 24 hours',
+    description: 'Usually respond within few minutes',
     gradient: 'from-blue-500 to-cyan-500'
   },
   {
     icon: Video,
     title: 'Free Consultation',
-    description: '30-minute discovery call',
+    description: '30-minute free consultation call',
     gradient: 'from-purple-500 to-pink-500'
   },
   {
