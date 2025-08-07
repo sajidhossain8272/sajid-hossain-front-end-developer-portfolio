@@ -9,7 +9,7 @@ import ContactSection from "@/components/contact-section";
 import FloatingChat from "@/components/floating-chat";
 import ResumeDownload from "@/components/resume-download";
 
-const baseUrl = "https://sajid-portfolio.vercel.app"; // Adjust if using a custom domain
+const baseUrl = "https://sajid-hossain-front-end-developer-p.vercel.app"; // Adjust if using a custom domain
 
 export const metadata: Metadata = {
   title: "Sajid Hossain – Front-End Developer Portfolio",
