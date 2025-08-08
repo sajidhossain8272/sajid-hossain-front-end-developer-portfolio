@@ -129,7 +129,7 @@ export default function ConsultationSection() {
         <div
           className={`${
             isMobile
-              ? "grid-cols-1 gap-3 mb-8"
+              ? "grid-cols-2 gap-3 mb-8"
               : "grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
           } grid`}
         >
