@@ -1,13 +1,5 @@
+import HomeClient from "./HomeClient";
 import { Metadata } from "next";
-import HeroSection from "@/components/hero-section";
-import AboutSection from "@/components/about-section";
-import SkillsSection, { SoftSkillsSection } from "@/components/skills-section";
-import ExperienceSection from "@/components/experience-section";
-import ProjectsSection from "@/components/projects-section";
-import ConsultationSection from "@/components/consultation-section";
-import ContactSection from "@/components/contact-section";
-import FloatingChat from "@/components/floating-chat";
-import ResumeDownload from "@/components/resume-download";
 
 const baseUrl = "https://sajid-hossain-front-end-developer-p.vercel.app"; // Adjust if using a custom domain
 
@@ -61,21 +53,5 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return (
-    <main className='min-h-screen bg-black overflow-x-hidden'>
-      <div className="fixed inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] opacity-5 pointer-events-none select-none"></div>
-      <div className='relative z-10'>
-        <ResumeDownload />
-        <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <SoftSkillsSection />
-        <ExperienceSection />
-        <ConsultationSection />
-        <ContactSection />
-        <FloatingChat />
-      </div>
-    </main>
-  );
+  return <HomeClient />;
 }
