@@ -318,7 +318,6 @@ export default function HeroSection() {
           )}
         </motion.div>
 
-        {/* Tech Stack (less glow on mobile) */}
         <motion.div
           className='mt-8 flex flex-wrap justify-center gap-4 md:gap-6'
           initial={{ opacity: 0, y: 20 }}
@@ -328,9 +327,7 @@ export default function HeroSection() {
         >
           {techStack.map((tech, index) => {
             const Icon = tech.icon;
-            // On mobile: only active glow, lightweight, no hover/y-anim
-            // On desktop: full interactive effects
-            const isActive = glowIndex === index;
+            const isActiveGlow = glowIndex === index;
             return (
               <motion.div
                 key={tech.name}
@@ -338,29 +335,38 @@ export default function HeroSection() {
                 initial={{ opacity: 0, scale: 0.85, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 1.4 + index * 0.09 }}
-                whileHover={
-                  showHeavyEffects
-                    ? { scale: 1.09, y: -8, transition: { duration: 0.22 } }
-                    : undefined
-                }
+                whileHover={!isMobile ? { scale: 1.09, y: -8 } : {}}
                 tabIndex={0}
               >
                 <span className='flex items-center gap-2 px-6 py-2.5 bg-white/10 border border-white/20 rounded-2xl text-white/90 font-medium shadow hover:shadow-xl text-base sm:text-lg transition'>
                   <Icon className='w-7 h-7' color={brandColors[index]} />
                   <span>{tech.name}</span>
                 </span>
-                {/* Neon Glow — always for active on mobile, animated for desktop */}
-                <motion.span
-                  className='absolute inset-0 rounded-2xl pointer-events-none transition'
-                  style={{
-                    boxShadow: isActive ? techGlows[index] : "none",
-                    opacity: isActive ? (isMobile ? 0.45 : 0.7) : 0, // softer glow on mobile
-                    filter: isMobile ? "blur(1.5px)" : "blur(2.5px)",
-                    transition:
-                      "box-shadow 0.4s cubic-bezier(.4,2,.3,1), opacity 0.25s",
-                  }}
-                  aria-hidden='true'
-                />
+                {/* Optimized Glow */}
+                {isMobile ? (
+                  <motion.span
+                    className='absolute inset-0 rounded-2xl pointer-events-none transition'
+                    style={{
+                      background: isActiveGlow
+                        ? "radial-gradient(circle at center, #fff2 0%, transparent 70%)"
+                        : "none",
+                      opacity: isActiveGlow ? 0.45 : 0,
+                      filter: "blur(10px)",
+                    }}
+                    animate={isActiveGlow ? { opacity: [0.2, 0.45, 0.2] } : {}}
+                    transition={{ duration: 1.2, repeat: Infinity }}
+                    aria-hidden='true'
+                  />
+                ) : (
+                  <motion.span
+                    className='absolute inset-0 rounded-2xl pointer-events-none transition'
+                    style={{
+                      boxShadow: techGlows[index],
+                      opacity: isActiveGlow ? 0.7 : 0,
+                    }}
+                    aria-hidden='true'
+                  />
+                )}
               </motion.div>
             );
           })}
