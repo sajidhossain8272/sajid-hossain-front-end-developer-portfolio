@@ -114,10 +114,13 @@ export function SoftSkillsSection() {
       className='mt-10 sm:mt-20'
     >
       <div
-        className={`relative ${
-          isMobile ? "p-4" : "p-7 sm:p-12"
-        } backdrop-blur-md bg-white/5 border border-white/10 rounded-3xl shadow-xl group max-w-3xl mx-auto`}
+        className={`bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl ${
+          isMobile
+            ? "p-4 shadow-md "
+            : "p-8 shadow-2xl backdrop-blur-xl"
+        } h-full flex flex-col`}
       >
+        {/* Section Title */}
         <motion.h3 className='text-2xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-blue-400 to-cyan-400 text-center mb-2 sm:mb-3 drop-shadow-sm'>
           Soft Skills & Expertise
         </motion.h3>
@@ -234,7 +237,7 @@ export default function SkillsSection() {
                 <motion.div
                   className={`bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl shadow-md sm:shadow-2xl h-full flex flex-col ${
                     isMobile ? "p-4" : "p-8"
-                  } ${isMobile ? "backdrop-blur-md" : "backdrop-blur-xl"}`}
+                  } ${isMobile ? "" : "backdrop-blur-md"}`}
                   whileHover={
                     isMobile
                       ? {}
@@ -262,7 +265,9 @@ export default function SkillsSection() {
                     {category.skills.map((skill, skillIndex) => (
                       <div
                         key={skill}
-                        className='px-2 py-1 sm:px-3 sm:py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg sm:rounded-xl text-white/90 font-medium text-xs sm:text-sm text-center cursor-default'
+                        className={`px-2 py-1 sm:px-3 sm:py-2 bg-white/5 ${
+                          isMobile ? "" : "backdrop-blur-sm"
+                        } border border-white/10 rounded-lg sm:rounded-xl text-white/90 font-medium text-xs sm:text-sm text-center cursor-default`}
                       >
                         {skill}
                       </div>

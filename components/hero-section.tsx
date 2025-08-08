@@ -172,6 +172,7 @@ export default function HeroSection() {
               style={{
                 left: glowX,
                 top: glowY,
+                willChange: "opacity, filter",
                 opacity: 0.23,
                 pointerEvents: "none",
                 background:
@@ -348,10 +349,10 @@ export default function HeroSection() {
                     className='absolute inset-0 rounded-2xl pointer-events-none transition'
                     style={{
                       background: isActiveGlow
-                        ? "radial-gradient(circle at center, #fff2 0%, transparent 70%)"
+                        ? "rgba(255,255,255,0.07)"
                         : "none",
                       opacity: isActiveGlow ? 0.45 : 0,
-                      filter: "blur(10px)",
+                      filter: isMobile ? undefined : "blur(10px)",
                     }}
                     animate={isActiveGlow ? { opacity: [0.2, 0.45, 0.2] } : {}}
                     transition={{ duration: 1.2, repeat: Infinity }}

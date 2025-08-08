@@ -140,6 +140,7 @@ export default function ProjectsSection() {
                       src={project.image}
                       alt={project.title}
                       className='w-full h-full object-cover'
+                        loading="lazy"
                       style={
                         isMobile
                           ? { borderRadius: "0.75rem" }
@@ -156,7 +157,11 @@ export default function ProjectsSection() {
                     {/* Floating icon: only on desktop */}
                     {!isMobile && (
                       <motion.div
-                        className={`absolute top-4 right-4 w-12 h-12 bg-gradient-to-r ${project.gradient} rounded-xl flex items-center justify-center shadow-2xl`}
+                        className={`w-full bg-gradient-to-r ${
+                          project.gradient
+                        } hover:opacity-90 text-white font-semibold py-3 rounded-xl border-0 ${
+                          isMobile ? "shadow" : "shadow-xl"
+                        }`}
                         whileHover={{ rotate: 15, scale: 1.1 }}
                         transition={{ duration: 0.3 }}
                         animate={{

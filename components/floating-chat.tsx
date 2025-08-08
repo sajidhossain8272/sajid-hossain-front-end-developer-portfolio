@@ -4,26 +4,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const isMobile = useIsMobile(); // 👈
 
-useEffect(() => {
-  const handleScroll = () => {
-    const width = window.innerWidth;
+  useEffect(() => {
+    const handleScroll = () => {
+      const width = window.innerWidth;
 
-    const scrollThreshold = width >= 1024 ? 1000 : 1650; // lg breakpoint: 1024px
+      const scrollThreshold = width >= 1024 ? 1000 : 1650; // lg breakpoint: 1024px
 
-    if (!hasScrolled && window.scrollY > scrollThreshold) {
-      setIsOpen(true);
-      setHasScrolled(true);
-    }
-  };
+      if (!hasScrolled && window.scrollY > scrollThreshold) {
+        setIsOpen(true);
+        setHasScrolled(true);
+      }
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, [hasScrolled]);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [hasScrolled]);
 
   return (
     <div className='fixed bottom-8 right-8 z-50'>
@@ -34,7 +36,14 @@ useEffect(() => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ duration: 0.3 }}
-            className='mb-4 backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-6 w-80'
+            // 👇 Mobile: No blur, less shadow. Desktop: Keep original.
+            className={`mb-4 
+              ${
+                isMobile
+                  ? "bg-gray-950 border border-white/20 rounded-2xl shadow-md p-4 w-72"
+                  : "backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-6 w-80"
+              }`}
+            style={isMobile ? { willChange: "transform,opacity" } : undefined}
           >
             <div className='flex items-center justify-between mb-4'>
               <div className='flex items-center gap-3'>
@@ -60,13 +69,63 @@ useEffect(() => {
                 </div>
               </div>
               <motion.button
-                onClick={() => setIsOpen(false)}
-                className='text-white/60 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10'
-                whileHover={{ scale: 1.1, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ duration: 0.2 }}
+                onClick={() => setIsOpen(!isOpen)}
+                className={`
+          relative 
+          bg-gradient-to-r from-blue-600 to-purple-600 
+          hover:from-blue-700 hover:to-purple-700 
+          text-white rounded-full 
+          ${isMobile ? "p-3 shadow-md" : "p-4 shadow-2xl"}
+        `}
+                whileHover={isMobile ? {} : { scale: 1.1, y: -2 }}
+                whileTap={isMobile ? {} : { scale: 0.9 }}
+                animate={isOpen ? { rotate: 180 } : { rotate: 0 }}
+                transition={{ duration: 0.3 }}
               >
-                <X className='h-5 w-5' />
+                {/* Pulse animation: simpler for mobile */}
+                <motion.div
+                  className='absolute inset-0 rounded-full'
+                  style={{
+                    background:
+                      "radial-gradient(circle,rgba(59,130,246,0.22)_0%,transparent_80%)",
+                  }}
+                  animate={
+                    isMobile
+                      ? { scale: [1, 1.14, 1], opacity: [0.4, 0.7, 0.4] }
+                      : { scale: [1, 1.3, 1], opacity: [0.7, 0, 0.7] }
+                  }
+                  transition={{
+                    duration: isMobile ? 2 : 1.5,
+                    repeat: Infinity,
+                  }}
+                />
+
+                {isOpen ? (
+                  <X className='h-6 w-6 relative z-10' />
+                ) : (
+                  <MessageCircle className='h-6 w-6 relative z-10' />
+                )}
+
+                {/* Green dot: smaller and less shadow on mobile */}
+                {!isOpen && (
+                  <motion.div
+                    className={`
+              absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white 
+              ${isMobile ? "shadow" : "shadow-lg"}
+            `}
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      boxShadow: isMobile
+                        ? undefined
+                        : [
+                            "0 0 0 0 rgba(34, 197, 94, 0.7)",
+                            "0 0 0 10px rgba(34, 197, 94, 0)",
+                            "0 0 0 0 rgba(34, 197, 94, 0.7)",
+                          ],
+                    }}
+                    transition={{ duration: 1.7, repeat: Infinity }}
+                  />
+                )}
               </motion.button>
             </div>
 

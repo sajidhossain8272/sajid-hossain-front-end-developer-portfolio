@@ -85,9 +85,9 @@ export default function AboutSection() {
               <motion.div
                 className={`relative ${
                   isMobile
-                    ? "w-52 h-52 p-2 rounded-2xl bg-white/10"
-                    : "w-96 h-96 p-6 rounded-3xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl"
-                } border border-white/20 shadow-2xl`}
+                    ? "w-52 h-52 p-2 rounded-2xl bg-white/5 border border-white/10 shadow-md"
+                    : "w-96 h-96 p-6 rounded-3xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl border border-white/20 shadow-2xl"
+                }`}
                 whileHover={isMobile ? {} : { scale: 1.02, rotateY: 5 }}
                 transition={{ duration: 0.3 }}
               >
@@ -265,8 +265,11 @@ export default function AboutSection() {
             return (
               <motion.div
                 key={stat.label}
-                className={`backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-8 text-center shadow-xl group 
-                  ${isMobile ? "" : "hidden md:block"}`}
+                className={`${
+                  isMobile
+                    ? "bg-white/5 border border-white/10 rounded-2xl p-4 text-center shadow-sm"
+                    : "backdrop-blur-lg bg-white/5 border border-white/10 rounded-2xl p-8 text-center shadow-xl group hidden md:block"
+                }`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.15 }}

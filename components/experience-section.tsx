@@ -94,7 +94,7 @@ export default function ExperienceSection() {
         <div className='relative'>
           {/* Timeline Line */}
           <motion.div
-            className={`absolute left-3 sm:left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 rounded-full opacity-30`}
+            className='absolute left-3 sm:left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 rounded-full opacity-30'
             initial={{ height: 0 }}
             whileInView={{ height: "100%" }}
             transition={{ duration: 1.2, delay: 0.35 }}
@@ -114,7 +114,11 @@ export default function ExperienceSection() {
             >
               {/* Timeline Dot */}
               <motion.div
-                className={`absolute left-0 sm:left-6 w-4 h-4 sm:w-6 sm:h-6 bg-gradient-to-r ${exp.gradient} rounded-full border-4 border-white/20 shadow-md sm:shadow-2xl backdrop-blur-sm`}
+                className={`absolute left-0 sm:left-6 w-4 h-4 sm:w-6 sm:h-6 bg-gradient-to-r ${
+                  exp.gradient
+                } rounded-full border-4 border-white/20 shadow-md sm:shadow-2xl ${
+                  isMobile ? "" : "backdrop-blur-sm"
+                }`}
                 whileHover={isMobile ? {} : { scale: 1.18, rotate: 180 }}
                 transition={{ duration: 0.3 }}
                 animate={
@@ -138,15 +142,14 @@ export default function ExperienceSection() {
 
               {/* Card */}
               <motion.div
-                className={`
-                  ml-10 sm:ml-20 
-                  ${
-                    isMobile
-                      ? "backdrop-blur-md p-4 rounded-2xl shadow-md"
-                      : "backdrop-blur-xl p-8 rounded-3xl shadow-2xl"
-                  }
-                  bg-white/5 border border-white/10 group
-                `}
+                className={`ml-10 sm:ml-20 
+  ${
+    isMobile
+      ? "bg-white/7 border border-white/10 rounded-2xl p-4 shadow-md"
+      : "backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl"
+  }
+  group
+`}
                 whileHover={
                   isMobile
                     ? {}

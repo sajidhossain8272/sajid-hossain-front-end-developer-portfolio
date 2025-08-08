@@ -90,11 +90,11 @@ export default function ContactSection() {
                 viewport={{ once: true }}
                 className={`
                   group 
-                  ${
-                    isMobile
-                      ? "backdrop-blur-md bg-white/5 border border-white/10 rounded-xl p-4 shadow-md h-full"
-                      : "backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl h-full"
-                  }
+                 ${
+                   isMobile
+                     ? "bg-white/7 border border-white/10 rounded-xl p-4 shadow-md h-full"
+                     : "backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-8 shadow-2xl h-full"
+                 }
                 `}
               >
                 <div className='flex items-center gap-4'>

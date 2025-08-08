@@ -138,14 +138,13 @@ export default function ConsultationSection() {
             return (
               <motion.div
                 key={feature.title}
-                className={`
-                  ${
-                    isMobile
-                      ? "backdrop-blur-md shadow-md rounded-xl p-4"
-                      : "backdrop-blur-xl shadow-2xl rounded-2xl p-6"
-                  }
-                  bg-white/5 border border-white/10 group
-                `}
+                className={`bg-white/8 border border-white/10 group
+  ${
+    isMobile
+      ? "shadow-md rounded-xl p-4"
+      : "backdrop-blur-xl shadow-2xl rounded-2xl p-6"
+  }
+`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: index * 0.07 }}
