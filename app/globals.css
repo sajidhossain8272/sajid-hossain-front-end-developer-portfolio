@@ -87,12 +87,16 @@
   html {
     scroll-behavior: smooth;
   }
-  
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
     @apply bg-background text-foreground;
   }
 }
 
-.hide-scrollbar::-webkit-scrollbar { display: none; }
-.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
