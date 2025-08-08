@@ -1,4 +1,3 @@
-import MotionDisableProvider from "@/components/MotionDisableProvider";
 import HomeClient from "./HomeClient";
 import { Metadata } from "next";
 
@@ -55,9 +54,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <MotionDisableProvider>
       <HomeClient />
-    </MotionDisableProvider>
   );
 }
 

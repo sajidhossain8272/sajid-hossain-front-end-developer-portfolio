@@ -133,7 +133,7 @@ export default function ProjectsSection() {
                   {/* Project Image */}
                   <div
                     className={`relative overflow-hidden ${
-                      isMobile ? "h-40" : "h-64"
+                      isMobile ? "h-52" : "h-64"
                     }`}
                   >
                     <motion.img
