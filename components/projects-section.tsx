@@ -140,7 +140,7 @@ export default function ProjectsSection() {
                       src={project.image}
                       alt={project.title}
                       className='w-full h-full object-cover'
-                        loading="lazy"
+                      loading='lazy'
                       style={
                         isMobile
                           ? { borderRadius: "0.75rem" }
@@ -220,6 +220,7 @@ export default function ProjectsSection() {
                         </motion.span>
                       ))}
                     </div>
+
                     {/* Button: always visible, touch-friendly */}
                     <motion.div
                       whileHover={isMobile ? {} : { scale: 1.02 }}
@@ -240,6 +241,31 @@ export default function ProjectsSection() {
             );
           })}
         </div>
+<motion.div
+  className="mt-8 rounded-lg bg-white/5 border border-white/10 p-4 sm:p-5 max-w-4xl mx-auto backdrop-blur-sm shadow-lg"
+  initial={{ opacity: 0, y: 10 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6, delay: 0.2 }}
+  viewport={{ once: true }}
+>
+  <p className="text-xs sm:text-sm text-white/80 leading-relaxed text-center">
+    ⚠️ Some project live links may not work in your region.{" "}
+    <span className="block sm:inline">
+      You can still view full details & source code on my{" "}
+      <a
+        href="https://github.com/sajidhossain8272"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline font-medium text-blue-400 hover:text-blue-300 transition-colors"
+      >
+        GitHub profile
+      </a>
+      .
+    </span>
+  </p>
+</motion.div>
+
+
       </div>
     </section>
   );
