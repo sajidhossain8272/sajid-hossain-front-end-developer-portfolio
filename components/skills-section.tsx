@@ -106,82 +106,87 @@ export function SoftSkillsSection() {
   const visibleSkills = showAll ? skills : skills.slice(0, collapsedCount);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className='mt-10 sm:mt-20'
-    >
-      <div
-        className={`bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl ${
-          isMobile
-            ? "p-4 shadow-md "
-            : "p-8 shadow-2xl backdrop-blur-xl"
-        } h-full flex flex-col`}
-      >
-        {/* Section Title */}
-        <motion.h3 className='text-2xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-blue-400 to-cyan-400 text-center mb-2 sm:mb-3 drop-shadow-sm'>
-          Soft Skills & Expertise
-        </motion.h3>
-        <p className='text-white/80 text-center mb-5 sm:mb-7 text-base sm:text-lg font-medium'>
-          Skills that drive my collaborative, high-impact approach to software
-          development and project delivery.
-        </p>
-
-        {/* Responsive grid always, see more on all screens */}
-        <div
-          className={`grid grid-cols-2 ${
-            isMobile ? "gap-2" : "sm:grid-cols-3 gap-3"
-          } pb-1 justify-center`}
-        >
-          {visibleSkills.map((skill, idx) => (
-            <motion.span
-              key={skill}
-              className={`
-                px-3 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-white/10 to-white/5
-                backdrop-blur-sm border border-white/20 rounded-2xl text-white/90
-                font-medium text-xs sm:text-base transition-transform duration-300
-                cursor-default min-w-[88px] sm:min-w-[110px] text-center whitespace-nowrap
-                ${
-                  isMobile
-                    ? ""
-                    : "hover:shadow-[0_0_20px_rgba(255,255,255,0.18)] shadow group-hover:shadow-md"
-                }
-                relative
-              `}
-              initial={{ opacity: 0, scale: 0.85 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: idx * 0.02 }}
-              whileHover={isMobile ? {} : { scale: 1.09, y: -2 }}
-            >
-              {skill}
-              <span
-                className={`absolute -inset-1 rounded-2xl bg-gradient-to-r from-cyan-400/10 via-white/5 to-pink-400/10 blur-sm opacity-20 group-hover:opacity-40 pointer-events-none`}
-                aria-hidden='true'
-              />
-            </motion.span>
-          ))}
-        </div>
-
-        {/* Show More / Show Less always visible if needed */}
-        {skills.length > collapsedCount && (
-          <button
-            onClick={() => setShowAll((prev) => !prev)}
-            className={`block px-4 sm:px-6 py-2 bg-gradient-to-r from-blue-500/20 to-pink-400/20 text-white/80 font-semibold rounded-2xl border border-white/20 mx-auto mt-3 sm:mt-4 text-xs sm:text-base transition hover:scale-105`}
-            style={{ minWidth: isMobile ? "88px" : "110px" }}
-          >
-            {showAll ? "Show Less" : "Show More"}
-          </button>
-        )}
-
-        {/* Glow border */}
+    <section className='relative '>
+      {/* Container to stop full-width stretch */}
+      <div className='max-w-5xl mx-auto px-4'>
         <motion.div
-          className='absolute -inset-1 rounded-3xl bg-gradient-to-r from-cyan-500/10 via-white/5 to-pink-500/10 blur-xl opacity-10 sm:opacity-30 group-hover:opacity-50 transition-opacity duration-500 pointer-events-none'
-          aria-hidden='true'
-        />
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className='relative'
+        >
+          {/* Card */}
+          <div
+            className={`relative bg-white/5 border border-white/10 rounded-2xl sm:rounded-3xl ${
+              isMobile ? "p-4 shadow-md" : "p-8 shadow-2xl backdrop-blur-xl"
+            } h-full flex flex-col`}
+          >
+            {/* Title */}
+            <motion.h3 className='text-2xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-blue-400 to-cyan-400 text-center mb-2 sm:mb-3'>
+              Soft Skills & Expertise
+            </motion.h3>
+
+            <p className='text-white/80 text-center mb-5 sm:mb-7 text-base sm:text-lg font-medium'>
+              Skills that drive my collaborative, high-impact approach to
+              software development and project delivery.
+            </p>
+
+            {/* Pills */}
+            <div
+              className={`grid grid-cols-2 ${
+                isMobile ? "gap-2" : "sm:grid-cols-3 gap-3"
+              } pb-1 justify-center`}
+            >
+              {visibleSkills.map((skill, idx) => (
+                <motion.span
+                  key={skill}
+                  className={`
+                    px-3 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-white/10 to-white/5
+                    backdrop-blur-sm border border-white/20 rounded-2xl text-white/90
+                    font-medium text-xs sm:text-base transition-transform duration-300
+                    cursor-default min-w-[88px] sm:min-w-[110px] text-center whitespace-nowrap
+                    ${
+                      isMobile
+                        ? ""
+                        : "hover:shadow-[0_0_20px_rgba(255,255,255,0.18)]"
+                    }
+                    relative
+                  `}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: idx * 0.02 }}
+                  whileHover={isMobile ? {} : { scale: 1.09, y: -2 }}
+                >
+                  {skill}
+                  <span
+                    className='absolute -inset-1 rounded-2xl bg-gradient-to-r from-cyan-400/10 via-white/5 to-pink-400/10 blur-sm opacity-20 pointer-events-none'
+                    aria-hidden='true'
+                  />
+                </motion.span>
+              ))}
+            </div>
+
+            {/* Show more/less */}
+            {skills.length > collapsedCount && (
+              <button
+                onClick={() => setShowAll((prev) => !prev)}
+                className='block px-4 sm:px-6 py-2 bg-gradient-to-r from-blue-500/20 to-pink-400/20 text-white/80 font-semibold rounded-2xl border border-white/20 mx-auto mt-3 sm:mt-4 text-xs sm:text-base transition hover:scale-105'
+                style={{ minWidth: isMobile ? "88px" : "110px" }}
+              >
+                {showAll ? "Show Less" : "Show More"}
+              </button>
+            )}
+
+            {/* Glow (parent is now relative) */}
+            <motion.div
+              className='pointer-events-none absolute -inset-1 rounded-3xl bg-gradient-to-r from-cyan-500/10 via-white/5 to-pink-500/10 blur-xl opacity-10 sm:opacity-30'
+              aria-hidden='true'
+            />
+          </div>
+        </motion.div>
       </div>
-    </motion.div>
+    </section>
   );
 }
 

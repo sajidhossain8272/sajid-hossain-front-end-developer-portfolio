@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import HeroSection from "@/components/hero-section";
 import ResumeDownload from "@/components/resume-download";
 import FloatingChat from "@/components/floating-chat";
+import WhatIOfferSection from "@/components/hire-me";
 
 // Below the fold: lazy load
 const AboutSection = dynamic(() => import("@/components/about-section"), {
@@ -46,6 +47,7 @@ export default function HomeClient() {
         <ProjectsSection />
         <SkillsSection />
         <SoftSkillsSection />
+        <WhatIOfferSection />
         <ExperienceSection />
         <ConsultationSection />
         <ContactSection />
