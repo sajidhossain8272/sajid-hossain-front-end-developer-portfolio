@@ -2,13 +2,19 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useIsMobile } from "@/hooks/use-mobile"; // import your hook!
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Download } from "lucide-react"; // ✅ Download icon
 
 export default function ResumeDownload() {
   const isMobile = useIsMobile();
 
   const handleDownload = () => {
-    window.open("https://sajid-hossain-resume.vercel.app/", "_blank");
+    const link = document.createElement("a");
+    link.href = "/Sajid_Hossain_Resume_2025.pdf"; // ✅ Public folder path
+    link.download = "Sajid_Hossain_Resume_2025.pdf"; // ✅ File name for saving
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -16,7 +22,7 @@ export default function ResumeDownload() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 1 }}
-      className='fixed top-6 right-6 sm:top-8 sm:right-8 z-50 print:hidden'
+      className='fixed top-4 right-6 sm:top-4 sm:right-8 z-50 print:hidden'
       style={isMobile ? { top: 12, right: 12 } : undefined}
     >
       <motion.div
@@ -25,21 +31,23 @@ export default function ResumeDownload() {
         transition={{ duration: 0.2 }}
       >
         <Button
-          title="Preview Resume"
+          title='Download Resume'
           size={isMobile ? "default" : "sm"}
           className={`bg-white/10 ${
             isMobile
               ? "px-7 py-4 text-base shadow-md backdrop-blur-sm"
               : "px-6 py-3 shadow-2xl backdrop-blur-lg"
           } 
-border border-white/20 text-white hover:bg-white/20 
-rounded-2xl font-semibold outline-none focus-visible:ring-4 focus-visible:ring-blue-400`}
+          border border-white/20 text-white hover:bg-white/20 
+          rounded-2xl font-semibold outline-none focus-visible:ring-4 focus-visible:ring-blue-400 flex items-center gap-2`}
           onClick={handleDownload}
           aria-label='Download Resume'
         >
-        Resume
+          <Download className='h-4 w-4' /> {/* ✅ Icon */}
+          Resume
         </Button>
       </motion.div>
     </motion.div>
   );
 }
+  

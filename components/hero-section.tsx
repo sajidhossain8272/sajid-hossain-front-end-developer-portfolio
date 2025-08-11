@@ -81,9 +81,7 @@ export default function HeroSection() {
   // --- Tech Glow Animation ---
   const [glowIndex, setGlowIndex] = useState(0);
   useEffect(() => {
-    // On mobile: slower (1800ms); Desktop: snappy (900ms)
     const intervalMs = isMobile ? 1800 : 900;
-    // But on reduced motion, pause it
     if (prefersReducedMotion) return;
     const interval = setInterval(() => {
       setGlowIndex((prev) => (prev + 1) % techStack.length);
@@ -104,7 +102,7 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className='relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-16 pb-16 sm:pt-24 sm:pb-16'>
+    <section className='relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-24 pb-14 sm:pt-28 sm:pb-16 px-4'>
       {/* --- Animated Background Orbs (desktop only) --- */}
       {showHeavyEffects && (
         <div className='absolute inset-0 pointer-events-none select-none z-0'>
@@ -152,7 +150,11 @@ export default function HeroSection() {
       <div className='relative z-10 text-center w-full max-w-3xl mx-auto md:max-w-6xl'>
         <motion.div
           ref={cardRef}
-          className='group relative mx-auto bg-[#13131a]/95 border-2 border-[#2323f6]/30 rounded-3xl flex flex-col items-center px-6 sm:px-12 py-10 sm:py-16 shadow-[0_4px_32px_0_rgba(44,225,255,0.11)] text-white overflow-visible transition-all duration-300'
+          className='group relative mx-auto rounded-2xl flex flex-col items-center px-6 sm:px-8 py-8 sm:py-12 text-white overflow-hidden
+backdrop-blur-xl bg-gradient-to-br from-blue-500/10 via-indigo-400/5 to-cyan-400/10
+shadow-[inset_0_0_0_1px_rgba(59,130,246,0.15),0_10px_30px_-10px_rgba(59,130,246,0.35),0_24px_60px_-20px_rgba(34,211,238,0.28)]
+ring-1 ring-white/5
+transition-all duration-300 hover:shadow-[inset_0_0_0_1px_rgba(59,130,246,0.22),0_16px_40px_-12px_rgba(59,130,246,0.5),0_36px_90px_-30px_rgba(34,211,238,0.38)]'
           initial={{ opacity: 0, y: 30, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -198,43 +200,23 @@ export default function HeroSection() {
             />
           )}
 
-          {/* Floating sparkles (desktop only) */}
-          {showHeavyEffects && (
-            <>
-              <motion.div
-                className='absolute -top-4 right-2 sm:-top-6 sm:-right-6 text-yellow-300 z-50'
-                animate={{ rotate: 360, scale: [1, 1.18, 1], y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-              >
-                <Sparkles className='h-9 w-9' />
-              </motion.div>
-              <motion.div
-                className='absolute -top-2 left-2 sm:-top-4 sm:-left-4 text-blue-400'
-                animate={{ rotate: -360, scale: [1, 1.28, 1], x: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity }}
-              >
-                <Sparkles className='h-8 w-8' />
-              </motion.div>
-            </>
-          )}
-
           {/* Status Badge, Name, Tagline, Bio */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className='mb-8'
+            className='mb-7 sm:mb-8'
           >
             <span
-              className='inline-block px-6 py-2 sm:px-7 sm:py-2.5 bg-gradient-to-r from-blue-500/25 to-purple-500/25 backdrop-blur-sm border border-white/20 rounded-full text-white/90 text-base sm:text-lg font-medium shadow'
+              className='inline-block px-5 py-2 sm:px-6 sm:py-2.5 bg-gradient-to-r from-blue-500/25 to-purple-500/25 backdrop-blur-sm border border-white/20 rounded-full text-white/90 text-sm sm:text-base font-medium shadow'
               tabIndex={0}
             >
-              ✨ Available for new projects
+              ✨ Let’s make your project shine, new or existing
             </span>
           </motion.div>
 
           <motion.h1
-            className='text-5xl sm:text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent mb-5 leading-[1.11] drop-shadow'
+            className='text-4xl sm:text-5xl md:text-5xl font-extrabold bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent mb-3 leading-tight drop-shadow'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.45 }}
@@ -243,7 +225,7 @@ export default function HeroSection() {
           </motion.h1>
 
           <motion.h2
-            className='text-2xl sm:text-3xl md:text-4xl text-white/90 font-semibold mb-6 tracking-tight'
+            className='text-lg sm:text-2xl md:text-3xl text-white/90 font-semibold mb-4 tracking-tight'
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.65 }}
@@ -252,32 +234,41 @@ export default function HeroSection() {
           </motion.h2>
 
           <motion.p
-            className='text-lg sm:text-2xl md:text-2xl text-white/80 mb-12 max-w-2xl mx-auto font-normal leading-relaxed'
+            className='text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 max-w-xl mx-auto font-normal leading-relaxed px-1'
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.8 }}
           >
             <span className='font-semibold text-white'>
-              Crafting exceptional digital experiences with React, Next.js,
-              TypeScript
+              I craft sleek, high-performing digital products.
             </span>{" "}
-            and the modern web.
-            <br className='hidden sm:inline' />
-            <span className='text-white/70'>
-              SaaS specialist & Web3 enthusiast.
-            </span>
+            From responsive websites to powerful SaaS platforms, I blend
+            creativity, code, and business insight.
           </motion.p>
+
+          {/* Quote line */}
+          <motion.div
+            className='mb-9 sm:mb-10'
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.95 }}
+          >
+            <blockquote className='max-w-xl mx-auto text-white/90 italic text-base sm:text-lg leading-relaxed px-3'>
+              “Your vision is my mission.”
+            </blockquote>
+            <div className='mx-auto mt-2 h-px w-24 bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500 opacity-60' />
+          </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
-            className='flex flex-col sm:flex-row gap-6 justify-center mb-14 w-full'
+            className='flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-14 w-full px-1'
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.1 }}
           >
             <Button
               size='lg'
-              className='bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-10 py-4 text-lg font-semibold rounded-2xl shadow-lg focus-visible:ring-4 focus-visible:ring-blue-400 transition'
+              className='bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 sm:px-10 py-4 text-base sm:text-lg font-semibold rounded-2xl shadow-lg focus-visible:ring-4 focus-visible:ring-blue-400 transition'
               onClick={() =>
                 window.open(
                   "https://sajid-hossain-resume.vercel.app/",
@@ -290,11 +281,11 @@ export default function HeroSection() {
             </Button>
             <Button
               size='lg'
-              className='bg-white/10 border border-white/20 text-white hover:bg-white/20 px-10 py-4 text-lg font-semibold rounded-2xl shadow-lg focus-visible:ring-4 focus-visible:ring-purple-400 transition'
+              className='bg-white/10 border border-white/20 text-white hover:bg-white/20 px-8 sm:px-10 py-4 text-base sm:text-lg font-semibold rounded-2xl shadow-lg focus-visible:ring-4 focus-visible:ring-purple-400 transition'
               onClick={() => setIsCalendlyOpen(true)}
               aria-label='Book Free Consultation'
             >
-              <Calendar className='mr-3 h-6 w-6' />
+              <Calendar className='mr-3 h-5 w-5 sm:h-6 sm:w-6' />
               Book Free Consultation
             </Button>
           </motion.div>
@@ -320,7 +311,7 @@ export default function HeroSection() {
         </motion.div>
 
         <motion.div
-          className='mt-8 flex flex-wrap justify-center gap-4 md:gap-6'
+          className='mt-8 flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6'
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.3 }}
@@ -339,11 +330,13 @@ export default function HeroSection() {
                 whileHover={!isMobile ? { scale: 1.09, y: -8 } : {}}
                 tabIndex={0}
               >
-                <span className='flex items-center gap-2 px-6 py-2.5 bg-white/10 border border-white/20 rounded-2xl text-white/90 font-medium shadow hover:shadow-xl text-base sm:text-lg transition'>
-                  <Icon className='w-7 h-7' color={brandColors[index]} />
+                <span className='flex items-center gap-2 px-4 sm:px-6 py-2.5 bg-white/10 border border-white/20 rounded-2xl text-white/90 font-medium shadow hover:shadow-xl text-sm sm:text-base md:text-lg transition'>
+                  <Icon
+                    className='w-6 h-6 sm:w-7 sm:h-7'
+                    color={brandColors[index]}
+                  />
                   <span>{tech.name}</span>
                 </span>
-                {/* Optimized Glow */}
                 {isMobile ? (
                   <motion.span
                     className='absolute inset-0 rounded-2xl pointer-events-none transition'
@@ -352,7 +345,6 @@ export default function HeroSection() {
                         ? "rgba(255,255,255,0.07)"
                         : "none",
                       opacity: isActiveGlow ? 0.45 : 0,
-                      filter: isMobile ? undefined : "blur(10px)",
                     }}
                     animate={isActiveGlow ? { opacity: [0.2, 0.45, 0.2] } : {}}
                     transition={{ duration: 1.2, repeat: Infinity }}
