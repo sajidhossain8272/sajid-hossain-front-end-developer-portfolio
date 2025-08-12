@@ -155,79 +155,124 @@ export default function ContactSection() {
 
         {/* Quick Chat Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          // avoid SSR "flash" on first paint
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-10% 0px" }}
         >
-          <div
-            className={`text-center mx-auto 
-              ${
-                isMobile
-                  ? "backdrop-blur-md bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-xl p-6 shadow-md"
-                  : "backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 rounded-3xl p-12 shadow-2xl"
-              }`}
-          >
-            <div className='mb-5 sm:mb-6 flex justify-center'>
-              <MessageCircle
+          <div className='relative mx-auto max-w-3xl'>
+            {/* soft gradient ring (static, no animation) */}
+            <div
+              aria-hidden='true'
+              className='absolute -inset-[1px] rounded-2xl lg:rounded-3xl opacity-50'
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(56,189,248,0.18), rgba(99,102,241,0.12), rgba(16,185,129,0.14))",
+                filter: "blur(0.5px)",
+              }}
+            />
+
+            {/* glass card */}
+            <div
+              className={`relative text-center mx-auto transform-gpu will-change-transform ${
+                isMobile ? "rounded-2xl p-6" : "rounded-3xl p-10"
+              } bg-neutral-900/65 backdrop-blur-xl border border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.35)]`}
+            >
+              {/* subtle top highlight (no motion) */}
+              <div
+                aria-hidden='true'
+                className='pointer-events-none absolute inset-x-0 -top-px h-16 rounded-t-[inherit] opacity-70'
+                style={{
+                  background:
+                    "radial-gradient(60% 100% at 50% 0%, rgba(56,189,248,0.16), transparent 70%)",
+                }}
+              />
+
+              <div className='mb-5 sm:mb-6 flex justify-center'>
+                <MessageCircle
+                  className={
+                    isMobile
+                      ? "h-10 w-10 text-sky-400"
+                      : "h-14 w-14 text-sky-400"
+                  }
+                  aria-hidden='true'
+                />
+              </div>
+
+              <h3
                 className={
                   isMobile
-                    ? "h-10 w-10 text-blue-400"
-                    : "h-16 w-16 text-blue-400"
-                }
-              />
-            </div>
-
-            <h3
-              className={
-                isMobile
-                  ? "text-xl font-bold text-white mb-2"
-                  : "text-3xl font-bold text-white mb-4"
-              }
-            >
-              Prefer Direct Chat?
-            </h3>
-            <p
-              className={`${
-                isMobile
-                  ? "text-white/70 mb-5 text-sm"
-                  : "text-white/70 mb-8 max-w-2xl mx-auto"
-              }`}
-            >
-              I'm just a message away! Choose your preferred platform for
-              instant communication.
-            </p>
-
-            <div
-              className={
-                isMobile
-                  ? "flex flex-col gap-3"
-                  : "flex flex-row gap-4 justify-center"
-              }
-            >
-              <Button
-                size={isMobile ? "sm" : "lg"}
-                className='bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-2xl shadow-lg border-0'
-                onClick={() =>
-                  window.open("https://wa.me/8801329530468", "_blank")
+                    ? "text-xl font-semibold text-neutral-100 mb-2"
+                    : "text-3xl font-semibold text-neutral-100 mb-3"
                 }
               >
-                <MessageCircle className='mr-2 h-5 w-5' />
-                WhatsApp Chat
-              </Button>
-              <Button
-                size={isMobile ? "sm" : "lg"}
-                className='bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-2xl shadow-lg border-0'
-                onClick={() =>
-                  window.open(
-                    "https://linkedin.com/in/brokephilanthropist",
-                    "_blank"
-                  )
+                Prefer Direct Chat?
+              </h3>
+
+              <p
+                className={`text-neutral-300/95 ${
+                  isMobile
+                    ? "text-sm mb-5"
+                    : "text-[15px] mb-7 max-w-2xl mx-auto"
+                }`}
+              >
+                I’m just a message away. Pick your platform and I’ll reply
+                quickly.
+              </p>
+
+              <div
+                className={
+                  isMobile
+                    ? "flex flex-col gap-3"
+                    : "flex flex-row gap-4 justify-center"
                 }
               >
-                <Linkedin className='mr-2 h-5 w-5' />
-                LinkedIn Message
-              </Button>
+                {/* WhatsApp */}
+                <Button
+                  size={isMobile ? "sm" : "lg"}
+                  className='group relative overflow-hidden rounded-xl text-white px-6 sm:px-8 py-3 sm:py-4 border-0 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500'
+                  onClick={() =>
+                    window.open("https://wa.me/8801329530468", "_blank")
+                  }
+                  aria-label='Open WhatsApp chat'
+                >
+                  {/* faint hover sheen (no animation, tied to hover only) */}
+                  <span
+                    aria-hidden='true'
+                    className='pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity'
+                    style={{
+                      background:
+                        "radial-gradient(120% 120% at 50% 0%, #fff, transparent 60%)",
+                    }}
+                  />
+                  <MessageCircle className='mr-2 h-5 w-5' />
+                  WhatsApp Chat
+                </Button>
+
+                {/* LinkedIn */}
+                <Button
+                  size={isMobile ? "sm" : "lg"}
+                  className='group relative overflow-hidden rounded-xl text-white px-6 sm:px-8 py-3 sm:py-4 border-0 bg-gradient-to-r from-sky-700 to-indigo-700 hover:from-sky-600 hover:to-indigo-600'
+                  onClick={() =>
+                    window.open(
+                      "https://linkedin.com/in/brokephilanthropist",
+                      "_blank"
+                    )
+                  }
+                  aria-label='Send LinkedIn message'
+                >
+                  <span
+                    aria-hidden='true'
+                    className='pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity'
+                    style={{
+                      background:
+                        "radial-gradient(120% 120% at 50% 0%, #fff, transparent 60%)",
+                    }}
+                  />
+                  <Linkedin className='mr-2 h-5 w-5' />
+                  LinkedIn Message
+                </Button>
+              </div>
             </div>
           </div>
         </motion.div>

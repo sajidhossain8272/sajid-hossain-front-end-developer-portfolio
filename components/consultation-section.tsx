@@ -201,20 +201,37 @@ export default function ConsultationSection() {
         >
           <motion.div
             className={`
-              ${
-                isMobile
-                  ? "backdrop-blur-md p-6 rounded-xl shadow-md"
-                  : "backdrop-blur-xl p-12 rounded-3xl shadow-2xl"
-              }
-              bg-gradient-to-br from-white/10 to-white/5 border border-white/20 mx-auto
-            `}
+    ${
+      isMobile
+        ? "backdrop-blur-md p-6 rounded-xl shadow-md"
+        : "backdrop-blur-2xl p-12 rounded-3xl shadow-2xl"
+    }
+    relative overflow-hidden border border-white/20 mx-auto
+  `}
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(30,30,60,0.9) 0%, rgba(45,15,75,0.9) 100%)",
+            }}
             whileHover={
-              isMobile ? {} : { backgroundColor: "rgba(255,255,255,0.08)" }
+              isMobile
+                ? {}
+                : {
+                    scale: 1.02,
+                    boxShadow: "0px 0px 40px rgba(120,60,255,0.3)",
+                  }
             }
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.4 }}
           >
+            {/* Glow Overlay */}
+            <div className='absolute inset-0 bg-gradient-to-tr from-purple-500/10 via-blue-500/10 to-transparent pointer-events-none' />
+
+            {/* Decorative Blurred Glow */}
+            <div className='absolute -top-16 -left-16 w-64 h-64 bg-purple-600/30 blur-3xl rounded-full' />
+            <div className='absolute -bottom-16 -right-16 w-64 h-64 bg-blue-500/30 blur-3xl rounded-full' />
+
+            {/* Icon */}
             <motion.div
-              className='mb-6 sm:mb-8'
+              className='mb-6 sm:mb-8 relative z-10'
               animate={
                 !isMobile
                   ? { rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }
@@ -232,31 +249,35 @@ export default function ConsultationSection() {
               <span className={isMobile ? "text-4xl" : "text-6xl"}>🚀</span>
             </motion.div>
 
+            {/* Title */}
             <motion.h3
-              className={`font-bold text-white mb-2 ${
-                isMobile ? "text-xl" : "text-3xl"
-              }`}
+              className={`font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 ${
+                isMobile ? "text-xl" : "text-4xl"
+              } relative z-10`}
               whileInView={{ scale: [0.95, 1] }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
               Let's Build Something Amazing Together
             </motion.h3>
+
+            {/* Description */}
             <motion.p
-              className={`text-white/70 mb-5 sm:mb-8 max-w-xl mx-auto ${
-                isMobile ? "text-sm" : ""
-              }`}
+              className={`text-white/80 mb-5 sm:mb-8 max-w-xl mx-auto ${
+                isMobile ? "text-sm" : "text-lg"
+              } relative z-10`}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               viewport={{ once: true }}
             >
               Whether you need a complete web application, performance
-              optimization, or just want to discuss your ideas, I'm here to help
-              you succeed.
+              optimization, or just want to discuss your ideas, let's create
+              something exceptional that makes an impact.
             </motion.p>
 
-            <div className='flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center'>
+            {/* Buttons */}
+            <div className='flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center relative z-10'>
               <motion.div
                 whileHover={isMobile ? {} : { scale: 1.05, y: -3 }}
                 whileTap={isMobile ? {} : { scale: 0.95 }}
@@ -264,7 +285,7 @@ export default function ConsultationSection() {
               >
                 <Button
                   size={isMobile ? "sm" : "lg"}
-                  className='bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-2xl shadow-lg border-0'
+                  className='bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-2xl shadow-lg border-0'
                   onClick={() => setIsCalendlyOpen(true)}
                 >
                   <Calendar className='mr-2 h-5 w-5' />
@@ -279,7 +300,7 @@ export default function ConsultationSection() {
               >
                 <Button
                   size={isMobile ? "sm" : "lg"}
-                  className='bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-2xl shadow-lg'
+                  className='bg-white/10 backdrop-blur-sm border border-white/30 text-white hover:bg-white/20 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-2xl shadow-lg'
                   onClick={() =>
                     window.open("mailto:sajidhossain8272@gmail.com", "_blank")
                   }

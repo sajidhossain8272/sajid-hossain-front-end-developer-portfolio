@@ -62,7 +62,7 @@ export default function ProjectsSection() {
   const isMobile = useIsMobile();
 
   return (
-    <section className={`py-10 sm:py-20 md:py-32 relative`}>
+    <section className={` relative`}>
       <div className='max-w-7xl mx-auto px-4'>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
