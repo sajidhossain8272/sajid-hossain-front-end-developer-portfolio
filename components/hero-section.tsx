@@ -152,9 +152,8 @@ export default function HeroSection() {
           ref={cardRef}
           className='group relative mx-auto rounded-2xl flex flex-col items-center px-6 sm:px-8 py-8 sm:py-12 text-white overflow-hidden
 backdrop-blur-xl bg-gradient-to-br from-blue-500/10 via-indigo-400/5 to-cyan-400/10
-shadow-[inset_0_0_0_1px_rgba(59,130,246,0.15),0_10px_30px_-10px_rgba(59,130,246,0.35),0_24px_60px_-20px_rgba(34,211,238,0.28)]
 ring-1 ring-white/5
-transition-all duration-300 hover:shadow-[inset_0_0_0_1px_rgba(59,130,246,0.22),0_16px_40px_-12px_rgba(59,130,246,0.5),0_36px_90px_-30px_rgba(34,211,238,0.38)]'
+transition-all duration-300 '
           initial={{ opacity: 0, y: 30, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -187,16 +186,6 @@ transition-all duration-300 hover:shadow-[inset_0_0_0_1px_rgba(59,130,246,0.22),
                 repeat: Infinity,
                 repeatType: "mirror",
               }}
-            />
-          )}
-
-          {/* Animated Neon Border (desktop only) */}
-          {showHeavyEffects && (
-            <motion.div
-              className='absolute inset-0 pointer-events-none rounded-3xl border-2 border-transparent group-hover:border-[#18b6f6] group-hover:shadow-[0_0_32px_0_rgba(44,225,255,0.31)] transition-all duration-300'
-              initial={{ opacity: 0 }}
-              whileHover={{ opacity: 1 }}
-              animate={{ opacity: 0 }}
             />
           )}
 
@@ -355,7 +344,7 @@ transition-all duration-300 hover:shadow-[inset_0_0_0_1px_rgba(59,130,246,0.22),
                     className='absolute inset-0 rounded-2xl pointer-events-none transition'
                     style={{
                       boxShadow: techGlows[index],
-                      opacity: isActiveGlow ? 0.7 : 0,
+                      opacity: isActiveGlow ? 0.2 : 0,
                     }}
                     aria-hidden='true'
                   />
